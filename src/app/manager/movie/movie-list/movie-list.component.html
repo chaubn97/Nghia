@@ -1,0 +1,105 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Movie Management</h4>
+                        <p class="card-category"> Modify Movie in system</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" [formGroup]="form" (ngSubmit)="searchAdvance()">
+                            <form class="input-group no-border">
+
+                                <div class="form-group col-md-3">
+                                    <label>Movie Name:</label>
+                                    <input type="text" (input)="movieName=$event.target.value" value="" class="form-control" placeholder="Search..." >
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Genre:</label>
+                                    <select class="form-control" (change)="type(addCt.value)" #addCt>
+                                        <!--                            (change)="listCinema(addCt.value)" #addCt-->
+                                        <option value="-1">------All------</option>
+                                        <option *ngFor="let genre of genres" value="{{genre.genreId}}" >{{genre.genreName}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Movie Year:</label>
+                                    <input class="form-control" id="movieYear" (input)="movieYear=$event.target.value">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <button style="margin:10px" mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </div>
+
+                            </form>
+                            <table class="table">
+                                <thead class=" text-danger">
+                                <th>
+                                    Movie ID
+                                </th>
+                                <th>
+                                    Movie Name
+                                </th>
+                                <th>
+                                    Genre
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Duration
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let movie of movies  | paginate: { itemsPerPage: 5, currentPage: p };">
+                                    <td>
+                                        {{movie.movieId}}
+                                    </td>
+                                    <td>
+                                        {{movie.movieName}}
+                                    </td>
+                                    <td>
+                                        <span *ngFor="let genre of movie.genreList">{{genre.genreName}} </span>
+                                    </td>
+                                    <td>
+                                        {{movie.movieYear}}
+                                    </td>
+                                    <td>
+                                        {{movie.movieDuration}}
+                                    </td>
+                                    <td>
+                                        {{movie.description}}
+                                    </td>
+                                    <td>
+                                        <a role="button" class="btn btn-outline-primary btn-sm" (click)="goToUpdate(movie)">Update</a>
+                                        <button class="btn btn-outline-danger btn-sm" (click)="goToDelete(movie)">Delete</button>
+                                        <button class="btn btn-outline-danger btn-sm" [routerLink]="['/buyticket/schedule', movie.movieId]">Buy Ticket</button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-danger" (click)="goToCreate()">Create</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

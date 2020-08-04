@@ -1,0 +1,12 @@
+
+#loginpage {
+    width: 400px;
+    margin-left: 35%;
+    margin-top: 10%;
+
+}
+.bg-img
+{
+    background-image: url('../../assets/img/rap.jpg');
+    background-size: cover;
+}

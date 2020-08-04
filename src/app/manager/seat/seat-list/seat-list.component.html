@@ -1,0 +1,92 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Seat Management</h4>
+                        <p class="card-category"> Modify Seat in system</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="form-group">
+                                <label>Cinema Name:</label>
+                                <select  class="form-control" style="width: 20%;margin-left: 1%" (change)="listcinema(addCt.value)" #addCt>
+                                    <option value="-1">ALL</option>
+                                    <option *ngFor="let cinema of cinemas " value="{{cinema.cinemaId}}">{{cinema.cinemaName}}</option>
+                                </select>
+                                <label>Room Name:</label>
+                                <select  class="form-control" style="width: 20%;margin-left: 1%" (change)="listroom(addCt1.value)" #addCt1>
+                                    <option *ngFor="let room of rooms " value="{{room.roomId}}">{{room.roomName}}</option>
+                                </select>
+                            </div>
+                            <table class="table">
+                                <thead class=" text-danger">
+                                <th>
+                                    Seat ID
+                                </th>
+                                <th>
+                                    Cinema Name
+                                </th>
+                                <th>
+                                    Room Name
+                                </th>
+                                <th>
+                                    Seat Row
+                                </th>
+                                <th>
+                                    Seat Column
+                                </th>
+                                <th>
+                                    Seat Type Name
+                                </th>
+                                <th>
+                                    Seat Price
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let seat of seats | paginate: { itemsPerPage: 5, currentPage: p };">
+                                    <td>
+                                        {{seat.seatId}}
+                                    </td>
+                                    <td>
+                                        {{seat.room.cinema.cinemaName}}
+                                    </td>
+                                    <td>
+                                        {{seat.room.roomName}}
+                                    </td>
+                                    <td>
+                                        {{seat.seatRow}}
+                                    </td>
+                                    <td>
+                                        {{seat.seatColumn}}
+                                    </td>
+                                    <td>
+                                        {{seat.seatType.seatTypeName}}
+                                    </td>
+                                    <td>
+                                        {{seat.seatType.seatPrice}}
+                                    </td>
+                                    <td>
+                                        <a role="button" class="btn btn-outline-primary btn-sm" (click)="gotoUpdate(seat)">Update</a>
+                                        <button class="btn btn-outline-danger btn-sm" (click)="gotoDelete(seat)">Delete</button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-danger" (click)="gotoCreate()">Create</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

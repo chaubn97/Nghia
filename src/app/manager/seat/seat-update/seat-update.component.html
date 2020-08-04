@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title">Update Seat</h4>
+                <p class="card-category"></p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <form class="col-md-12" [formGroup]="form" (ngSubmit)="doSubmit()">
+                        <div class="form-group">
+                            <label>Room Name:</label>
+                            <select formControlName="roomId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.roomId.errors }">
+                                <option *ngFor="let room of rooms" value="{{room.roomId}}">{{room.roomName}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.roomId.errors" class="invalid-feedback">
+                                <div *ngIf="f.roomId.errors.required">Room name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="seatRow">Seat Row:</label>
+                            <input type="text" class="form-control" id="seatRow" formControlName="seatRow" [ngClass]="{ 'is-invalid': submitted && f.seatRow.errors }"/>
+                            <div *ngIf="submitted && f.seatRow.errors" class="invalid-feedback">
+                                <div *ngIf="f.seatRow.errors.required">Seat Row is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="seatColumn">Seat Column:</label>
+                            <input type="number" class="form-control" id="seatColumn" formControlName="seatColumn" [ngClass]="{ 'is-invalid': submitted && f.seatColumn.errors }"/>
+                            <div *ngIf="submitted && f.seatColumn.errors" class="invalid-feedback">
+                                <div *ngIf="f.seatColumn.errors.required">Seat Column is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Seat Type Name:</label>
+                            <select formControlName="seatTypeId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.seatTypeId.errors }">
+                                <option *ngFor="let seatType of seatTypes" value="{{seatType.seatTypeId}}">{{seatType.seatTypeName}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.seatTypeId.errors" class="invalid-feedback">
+                                <div *ngIf="f.seatTypeId.errors.required">Seat type name is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline-primary btn-sm" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

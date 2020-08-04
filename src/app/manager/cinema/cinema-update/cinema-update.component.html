@@ -1,0 +1,43 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title ">Update Cinema</h4>
+                <p class="card-category"> </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <form class="col-md-12" [formGroup]="form" (ngSubmit)="doSubmit()">
+                        <div class="form-group" >
+                            <label  for="cinemaName">Cinema Name:</label>
+                            <input class="form-control" id="cinemaName" formControlName="cinemaName" [ngClass]="{ 'is-invalid': submitted && f.cinemaName.errors }"/>
+                            <div *ngIf="submitted && f.cinemaName.errors" class="invalid-feedback">
+                                <div *ngIf="f.cinemaName.errors.required">Cinema name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <input class="form-control" id="address" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"/>
+                            <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                <div *ngIf="f.address.errors.required">Cinema name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  for="shortDes">Description:</label>
+                            <textarea class="form-control" id="shortDes" formControlName="shortDes" rows="3" [ngClass]="{ 'is-invalid': submitted && f.shortDes.errors }"></textarea>
+                            <div *ngIf="submitted && f.shortDes.errors" class="invalid-feedback">
+                                <div *ngIf="f.shortDes.errors.required">Cinema name is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline-primary btn-sm" type="submit" >Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

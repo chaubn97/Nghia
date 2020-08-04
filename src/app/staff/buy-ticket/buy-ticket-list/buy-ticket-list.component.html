@@ -1,0 +1,133 @@
+<!--<div class="main-content">-->
+<!--    <div class="container-fluid">-->
+<!--        <div class="theatre">-->
+<!--            <div class="cinema-seats left" >-->
+<!--                <div class="cinema-row ">-->
+<!--                    <div class="seat" *ngFor="let seat of seats">-->
+<!--                        {{seat.seatRow + seat.seatColumn}}-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Buy Ticket</h4>
+                        <p class="card-category"></p>
+                    </div>
+
+                    <div class="card-body" style="padding-right:35%;padding-left: 35%;box-sizing: unset ;">
+                        <!--                        <table class="cinema-seats" style="margin-top: 20px;table-layout:fixed;height: 600px;width: 100%;">-->
+                        <!--                                <tr  *ngFor="let seat of seats;let i = index" [attr.data-index]="i">-->
+                        <!--                                    <td [ngClass]="{'seatactive':seat.status == true, 'seat':seat.status==false}"   (click)="changeStatus()"><span style="color: white;">{{seat.seatRow + seat.seatColumn}}</span></td>-->
+                        <!--                                </tr>-->
+                        <div style="margin-top: 100px;">
+                            <div class="seat-container" *ngFor="let seat of seats ;let i = index ; ">
+                                <div class="btn-container" *ngIf=" i%8 === 0 && i!=0"></div>
+                                <button [ngClass]="getSeatClass(seat.seatStatus)"
+                                        (click)="changeStatus(this.seat)" [class.chosenseat]="seat.chosen"><span
+                                        style="color: white">{{seat.seatRow + seat.seatColumn}}</span></button>
+
+                            </div>
+
+                        </div>
+
+                        <!--                        </table>-->
+                        <div style="margin-top: 2%;clear: both">
+                            <button class="btn btn-outline-danger btn-sm" (click)="buyTicket()">Buy</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Buy Ticket</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <td>
+                                Cinema Name :
+                            </td>
+                            <td>
+                                {{schedule.room.cinema.cinemaName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Room Name :
+                            </td>
+                            <td>
+                                {{schedule.room.roomName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Movie Name :
+                            </td>
+                            <td>
+                                {{schedule.movie.movieName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Start Time :
+                            </td>
+                            <td>
+                                {{schedule.startTime | date : 'medium'}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Price Movie :
+                            </td>
+                            <td>
+                                {{schedule.priceMovie}}
+                            </td>
+                        </tr>
+                        <div *ngFor="let seatbill of seatBill">
+                            <th>
+                            <tr>
+                                <td>
+                                    Seat Name :
+                                </td>
+                                <td>
+                                    {{seatbill.seatRow+" "+seatbill.seatColumn}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Seat Type :
+                                </td>
+                                <td>
+                                    {{seatbill.seatType.seatTypeName}}
+                                </td>
+                            </tr>
+                            </th>
+
+                        </div>
+                        <tr>
+                            <td>
+                                Total Price :
+                            </td>
+                            <td>
+                                {{totalPrice}}
+                            </td>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

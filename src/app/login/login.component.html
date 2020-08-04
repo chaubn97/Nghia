@@ -1,0 +1,25 @@
+
+<div class="card" id="loginpage">
+    <article class="card-body">
+        <h4 class="card-title mb-4 mt-1">Sign in</h4>
+        <form action="login" [formGroup]="loginForm">
+            <div class="form-group">
+                <label class="text-dark">Username</label>
+                <input name="username" class="form-control" formControlName="managerUsername" placeholder="Username" type="text">
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <label class="text-dark">Password</label>
+                <input name="password" class="form-control" formControlName="managerPassword" placeholder="******" type="password">
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <div class="checkbox">
+                    <label class="text-dark"> <input name="remember" type="checkbox" value="remember"> Save password </label>
+                </div> <!-- checkbox .// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger btn-block" (click)="signIn()"> Login  </button>
+            </div> <!-- form-group// -->
+            <div *ngIf="isLoginFailed" class="alert alert-warning">Login failed !! <br/> Username or Password is incorrect.! </div>
+        </form>
+    </article>
+</div> <!-- card.// -->

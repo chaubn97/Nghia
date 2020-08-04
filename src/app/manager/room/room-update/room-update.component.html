@@ -1,0 +1,60 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title ">Update Room</h4>
+                <p class="card-category"> </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <form class="col-md-12" [noValidate]="true" [formGroup]="form" (ngSubmit)="doSubmit()">
+
+                        <div class="form-group" >
+                            <label  for="roomName">Room Name:</label>
+                            <input class="form-control" id="roomName" formControlName="roomName" [ngClass]="{ 'is-invalid': submitted && f.roomName.errors }"/>
+                            <div *ngIf="submitted && f.roomName.errors" class="invalid-feedback">
+                                <div *ngIf="f.roomName.errors.required">Room name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label  >Cinema Name:</label>
+                            <select formControlName="cinemaId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cinemaId.errors }">
+                                <!--                            (change)="listCinema(addCt.value)" #addCt-->
+                                <option *ngFor="let cinema of cinemas" value="{{cinema.cinemaId}}" >{{cinema.cinemaName}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.cinemaId.errors" class="invalid-feedback">
+                                <div *ngIf="f.cinemaId.errors.required">Cinema name is required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label   for="seatNum">Seat Number:</label>
+                            <input class="form-control" id="seatNum" formControlName="seatNum" [ngClass]="{ 'is-invalid': submitted && f.seatNum.errors }"/>
+                            <div *ngIf="submitted && f.seatNum.errors" class="invalid-feedback">
+                                <div *ngIf="f.seatNum.errors.required">Seat Number is required</div>
+                                <div *ngIf="f.seatNum.errors.max">Movie year must be biggest 50 seat</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label >Type:</label>
+                            <select formControlName="type" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+                                <!--                            (change)="listCinema(addCt.value)" #addCt-->
+                                <option value="3D" >3D</option>
+                                <option value="2D" >2D</option>
+                            </select>
+                            <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+                                <div *ngIf="f.type.errors.required">Type is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline-primary btn-sm" type="submit" >Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

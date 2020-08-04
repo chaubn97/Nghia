@@ -1,0 +1,180 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Revenue Statistic</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <form class="col-md-10 " [noValidate]="true" [formGroup]="form" (ngSubmit)="loadMovieRevenues()">
+                                <label class="text-danger">Start Time: </label>
+                                <input type="datetime-local" formControlName="startTime" (input)="startTime=$event.target.value" placeholder="yyyy-MM-ddTHH:mm:ss">
+                                <label class="text-danger">End Time: </label>
+                                <input type="datetime-local" formControlName="endTime" (input)="endTime=$event.target.value" placeholder="yyyy-MM-ddTHH:mm:ss">
+                                <button mat-raised-button type="submit" class="btn btn-outline-danger btn-sm"> Search
+                                </button>
+                            </form>
+                            <table class="table">
+                                <thead class="text-danger">
+                                <th>
+                                    Movie Id
+                                </th>
+                                <th>
+                                    Movie Name
+                                </th>
+                                <th>
+                                    Total Price
+                                </th>
+                                <th>
+                                    Total Penalty Money
+                                </th>
+                                <th>
+                                    Total Ticket
+                                </th>
+
+                                <th>
+
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let revenue of movieRevenues | paginate: { itemsPerPage: 5, currentPage: p };">
+                                    <td>
+                                        {{revenue.movieId}}
+                                    </td>
+                                    <td>
+                                        {{revenue.movieName}}
+                                    </td>
+                                    <td>
+                                        {{revenue.totalOfMoviePrice}}
+                                    </td>
+                                    <td>
+                                        {{revenue.penaltyMoney}}
+                                    </td>
+                                    <td>
+                                        {{revenue.totalOfMovieTicket}}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-outline-danger btn-sm" (click)="goToDetail(revenue)">Detail</button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Cinema Statistic</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <table class="table">
+                                <thead class="text-primary">
+                                <th>
+                                    Cinema Id
+                                </th>
+                                <th>
+                                    Cinema Name
+                                </th>
+                                <th>
+                                    Total Price
+                                </th>
+                                <th>
+                                    Total Ticket
+                                </th>
+                                <th>
+
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let revenue of cinemaRevenues | paginate: { itemsPerPage: 5, currentPage: p1 };">
+                                    <td>
+                                        {{revenue.cinemaId}}
+                                    </td>
+                                    <td>
+                                        {{revenue.cinemaName}}
+                                    </td>
+                                    <td>
+                                        {{revenue.totalOfMoviePrice}}
+                                    </td>
+                                    <td>
+                                        {{revenue.totalOfMovieTicket}}
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <pagination-controls (pageChange)="p1 = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-warning">
+                        <h4 class="card-title ">Statistic Per Day</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <table class="table">
+                                <thead class="text-warning">
+                                <th>
+                                    Day
+                                </th>
+                                <th>
+                                    Total Ticket
+                                </th>
+                                <th>
+                                    Total Price
+                                </th>
+
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let revenue of dayRevenues | paginate: { itemsPerPage: 5, currentPage: p1 };">
+                                    <td>
+                                        {{revenue.day | date:'longDate'}}
+                                    </td>
+                                    <td>
+                                        {{revenue.totalOfTicket}}
+                                    </td>
+                                    <td>
+                                        {{revenue.totalOfPrice}}
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <pagination-controls (pageChange)="p1 = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

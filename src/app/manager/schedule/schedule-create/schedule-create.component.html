@@ -1,0 +1,56 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title ">Create Schedule</h4>
+                <p class="card-category"> </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <form class="col-md-12"[formGroup]="form" (ngSubmit)="doSubmit()">
+                        <div class="form-group" >
+                            <label  >Room Name:</label>
+                            <select formControlName="roomId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.roomId.errors }">
+                                <!--                            (change)="listCinema(addCt.value)" #addCt-->
+                                <option *ngFor="let room of rooms" value="{{room.roomId}}" >{{room.roomName + " " + room.cinema.cinemaName}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.roomId.errors" class="invalid-feedback">
+                                <div *ngIf="f.roomId.errors.required">Room name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label  >Movie Name:</label>
+                            <select formControlName="movieId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.movieId.errors }">
+                                <!--                            (change)="listCinema(addCt.value)" #addCt-->
+                                <option *ngFor="let movie of movies" value="{{movie.movieId}}" >{{movie.movieName}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.movieId.errors" class="invalid-feedback">
+                                <div *ngIf="f.movieId.errors.required">Movie name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label   for="startTime">Start Time:</label>
+                            <input type="datetime-local" class="form-control" id="startTime" formControlName="startTime" [ngClass]="{ 'is-invalid': submitted && f.startTime.errors }"/>
+                            <div *ngIf="submitted && f.startTime.errors" class="invalid-feedback">
+                                <div *ngIf="f.startTime.errors.required">Start time is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label  for="priceMovie">Price Movie:</label>
+                            <input type="number" class="form-control" id="priceMovie" formControlName="priceMovie" [ngClass]="{ 'is-invalid': submitted && f.priceMovie.errors }"/>
+                            <div *ngIf="submitted && f.priceMovie.errors" class="invalid-feedback">
+                                <div *ngIf="f.priceMovie.errors.required">Price movie is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline-primary btn-sm" type="submit" >Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

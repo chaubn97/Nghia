@@ -1,0 +1,77 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Choose Schedule</h4>
+                        <p class="card-category"></p>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+<!--                            <div class="form-group col-md-3" >-->
+<!--                                <label>Movie Name:</label>-->
+<!--                                <select formControlName="movieId" class="form-control" (change)="listMovie(addCt.value)" #addCt>-->
+<!--                                    <option value="-1">&#45;&#45;&#45;&#45;&#45;&#45;All&#45;&#45;&#45;&#45;&#45;&#45;</option>-->
+<!--                                    <option *ngFor="let movie of movies" value="{{movie.movieId}}" >{{movie.movieName}}</option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+                            <table class="table">
+                                <thead class=" text-danger">
+                                <th>
+                                    Schedule ID
+                                </th>
+                                <th>
+                                    Room Name
+                                </th>
+                                <th>
+                                    Movie Name
+                                </th>
+                                <th>
+                                    Start Time
+                                </th>
+                                <th>
+                                    Price Movie
+                                </th>
+                                <th></th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let schedule of schedules | paginate: { itemsPerPage: 5, currentPage: p };">
+                                    <td>
+                                        {{schedule.scheduleId}}
+                                    </td>
+                                    <td>
+                                        {{schedule.room.roomName}}
+                                    </td>
+                                    <td>
+                                        {{schedule.movie.movieName}}
+                                    </td>
+                                    <td>
+                                        {{schedule.startTime | date : 'medium'}}
+                                    </td>
+                                    <td>
+                                        {{schedule.priceMovie}}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-outline-danger btn-sm" [routerLink]="['/ticket/ticketlist', schedule.scheduleId,customerId]">Choose</button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="col-md-12">-->
+<!--                <button type="button" class="btn btn-danger" (click)="goToCreate()">Create</button>-->
+<!--            </div>-->
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,38 @@
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Buy Ticket</h4>
+                        <p class="card-category"> </p>
+                    </div>
+
+                    <div class="card-body" style="padding-right:35%;padding-left: 35%;box-sizing: unset ;">
+
+                            <div style="margin-top: 100px;">
+                                <div class="seat-container" *ngFor="let seat of seats ;let i = index ; ">
+                                    <div class="btn-container" *ngIf=" i%8 === 0 && i!=0"></div>
+                                    <button [ngClass]="getSeatClass(seat.seatStatus)"
+                                             (click)="changeStatus(this.seat)" [class.chosenseat]="seat.chosen"><span
+                                            style="color: white">{{seat.seatRow + seat.seatColumn}}</span></button>
+
+                                </div>
+
+                            </div>
+
+
+                        <div style="margin-top: 2%;clear: both">
+                            <button class="btn btn-outline-danger btn-sm" (click)="buyTicket()">Buy</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

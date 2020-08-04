@@ -1,0 +1,87 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Cancel Ticket</h4>
+                        <p class="card-category"> Customer Ticket</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <form [formGroup]="form" class="input-group no-border col-md-4" (ngSubmit)="searchById()">
+                                <input type="text" (input)="ticketId=$event.target.value" name="ticketId" value="" class="form-control" placeholder="Search..." >
+                                <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                    <i class="material-icons">search</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </form>
+                            <table class="table">
+                                <thead class=" text-danger">
+                                <th>
+                                    Ticket ID
+                                </th>
+                                <th>
+                                    Seat
+                                </th>
+                                <th>
+                                    Movie Name
+                                </th>
+                                <th>
+                                    Room Name
+                                </th>
+                                <th>
+                                    Cinema Name
+                                </th>
+                                <th>
+                                    Start Time
+                                </th>
+                                <th>
+                                    Buy Time
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let ticket of tickets | paginate: { itemsPerPage: 5, currentPage: p };">
+                                    <td>
+                                        {{ticket.ticketId}}
+                                    </td>
+                                    <td>
+                                        {{ticket.seat.seatRow}}{{ticket.seat.seatColumn}}
+                                    </td>
+                                    <td>
+                                        {{ticket.schedule.movie.movieName}}
+                                    </td>
+                                    <td>
+                                        {{ticket.schedule.room.roomName}}
+                                    </td>
+                                    <td>
+                                        {{ticket.schedule.room.cinema.cinemaName}}
+                                    </td>
+                                    <td>
+                                        {{ticket.schedule.startTime | date:'medium'}}
+                                    </td>
+                                    <td>
+                                        {{ticket.bookingTime | date:'medium'}}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-outline-danger btn-sm" (click)="cancelTicket(ticket)">Cancel</button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

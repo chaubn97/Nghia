@@ -1,0 +1,56 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Revenue Statistic</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <table class="table">
+                                <thead class="text-danger">
+                                <th>
+                                    Schedule Id
+                                </th>
+                                <th>
+                                    Room
+                                </th>
+                                <th>
+                                    Time
+                                </th>
+                                <th>
+                                    Total
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let schedule of schedules | paginate: { itemsPerPage: 5, currentPage: p };">
+                                    <td>
+                                        {{schedule.scheduleId}}
+                                    </td>
+                                    <td>
+                                        {{schedule.roomName}}
+                                    </td>
+                                    <td>
+                                        {{schedule.startTime | date:'medium'}}
+                                    </td>
+                                    <td>
+                                        {{schedule.totalMoney}}
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

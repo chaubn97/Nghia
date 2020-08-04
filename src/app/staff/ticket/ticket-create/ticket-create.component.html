@@ -1,0 +1,73 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Choose Movie</h4>
+                        <p class="card-category"> Choose Movie you want</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-danger">
+                                <th>
+                                    Movie ID
+                                </th>
+                                <th>
+                                    Movie Name
+                                </th>
+                                <th>
+                                    Genre
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Duration
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let movie of movies  | paginate: { itemsPerPage: 5, currentPage: p };">
+                                    <td>
+                                        {{movie.movieId}}
+                                    </td>
+                                    <td>
+                                        {{movie.movieName}}
+                                    </td>
+                                    <td>
+                                        <span *ngFor="let genre of movie.genreList">{{genre.genreName}} </span>
+                                    </td>
+                                    <td>
+                                        {{movie.movieYear}}
+                                    </td>
+                                    <td>
+                                        {{movie.movieDuration}}
+                                    </td>
+                                    <td>
+                                        {{movie.description}}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-outline-danger btn-sm" [routerLink]="['/ticket/ticket-schedule', movie.movieId,customerId]">Choose</button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

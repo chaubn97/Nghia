@@ -1,0 +1,66 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title ">Update Movie</h4>
+                <p class="card-category"> </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <form class="col-md-12" [formGroup]="form" (ngSubmit)="doSubmit()">
+
+                        <div class="form-group" >
+                            <label  for="movieName">Movie Name:</label>
+                            <input class="form-control" id="movieName" formControlName="movieName" [ngClass]="{ 'is-invalid': submitted && f.movieName.errors }"/>
+                            <div *ngIf="submitted && f.movieName.errors" class="invalid-feedback">
+                                <div *ngIf="f.movieName.errors.required">Movie name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label  for="movieYear">Movie Year:</label>
+                            <input class="form-control" id="movieYear" formControlName="movieYear" [ngClass]="{ 'is-invalid': submitted && f.movieYear.errors }"/>
+                            <div *ngIf="submitted && f.movieYear.errors" class="invalid-feedback">
+                                <div *ngIf="f.movieYear.errors.required">Movie year is required</div>
+                                <div *ngIf="f.movieYear.errors.max || f.movieYear.errors.min">Movie year must be between 1900 and 2030</div>
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label  for="movieDuration">Movie Duration:</label>
+                            <input class="form-control" id="movieDuration" formControlName="movieDuration" [ngClass]="{ 'is-invalid': submitted && f.movieDuration.errors }"/>
+                            <div *ngIf="submitted && f.movieDuration.errors" class="invalid-feedback">
+                                <div *ngIf="f.movieDuration.errors.required">Movie duration is required</div>
+                                <div *ngIf="f.movieYear.errors.max || f.movieYear.errors.min">Movie year must be between 90 and 150</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label   for="description">Description:</label>
+                            <textarea class="form-control" id="description" formControlName="description" rows="3" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+                            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                <div *ngIf="f.description.errors.required">Description is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label >Genre:</label><br/>
+                            <span *ngFor="let genre of genres">
+                                <input type="checkbox" [checked]="genre.haveGenre" id="genreList{{genre.genreId}}" (change) = "onChange($event.target.checked, genre.genreId.toString())" value="{{genre.genreId}}"/>
+                                <label class="text-danger">&nbsp;{{genre.genreName}}&nbsp; </label>
+                            </span>
+
+                            <div *ngIf="submitted && genreIdList.length == 0" style="color: red">
+                                Movie type is required
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline-primary btn-sm" type="submit" >Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

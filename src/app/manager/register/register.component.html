@@ -1,0 +1,76 @@
+
+<div class="row justify-content-center" style="margin-top: 10%;">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title ">Create Account</h4>
+                <p class="card-category"> </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+
+                    <form class="col-md-8" [formGroup]="registerForm" (ngSubmit)="signUp()">
+                        <div class="form-group">
+                            <label class="text-danger">Cinema Name:</label>
+                            <select class="form-control" formControlName="cinemaId" [ngClass]="{ 'is-invalid': submitted && f.cinemaId.errors }">
+                                <option *ngFor="let cinema of cinemas" value="{{cinema.cinemaId}}">{{cinema.cinemaName}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.cinemaId.errors" class="invalid-feedback">
+                                <div *ngIf="f.cinemaId.errors.required">Cinema name is required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="text-danger">Username</label>
+                            <input id="managerUsername" formControlName="managerUsername" name="managerUsername" class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.managerUsername.errors }">
+                            <div *ngIf="submitted && f.managerUsername.errors" class="invalid-feedback">
+                                <div *ngIf="f.managerUsername.errors.required">Username is required</div>
+                                <div *ngIf="f.managerUsername.errors.maxlength || f.managerUsername.errors.minlength">Username must be between 2 character and 50 character</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-danger">Password</label>
+                            <input id="managerPassword" name="managerPassword" formControlName="managerPassword" class="form-control" type="password" #managerPassword [ngClass]="{ 'is-invalid': submitted && f.managerPassword.errors }">
+                            <div *ngIf="submitted && f.managerPassword.errors" class="invalid-feedback">
+                                <div *ngIf="f.managerPassword.errors.required">Password is required</div>
+                                <div *ngIf="f.managerPassword.errors.maxlength || f.managerPassword.errors.minlength">Password must be between 6 character and 50 character</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="text-danger"> Confirm Password</label>
+                            <input class="form-control" formControlName="confirmPassword" id="confirmPassword" name="confirmPassword" type="password" #ch [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+                            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                                <div *ngIf="f.confirmPassword.errors.mustMatch">Confirm Password must match</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-danger">Name</label>
+                            <input id="managerName" formControlName="managerName" name="managerName" class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.managerName.errors }">
+                            <div *ngIf="submitted && f.managerName.errors" class="invalid-feedback">
+                                <div *ngIf="f.managerName.errors.required">Name is required</div>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <label class="text-danger">Role: </label>
+                            <select class="form-control" formControlName="roles" [ngClass]="{ 'is-invalid': submitted && f.roles.errors }">
+                                <option value="MANAGER">MANAGER</option>
+                                <option value="STAFF">STAFF</option>
+                            </select>
+                            <div *ngIf="submitted && f.roles.errors" class="invalid-feedback">
+                                <div *ngIf="f.roles.errors.required">Role is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-danger"> Register  </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

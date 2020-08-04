@@ -1,0 +1,80 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Customer Management</h4>
+                        <p class="card-category"> Modify Customer in system</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <form [formGroup]="form" class="input-group no-border col-md-4" (ngSubmit)="searchByName()">
+                                <input type="text" (input)="searchName=$event.target.value" name="fullName" value="" class="form-control" placeholder="Search..." >
+                                <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                    <i class="material-icons">search</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </form>
+                            <table class="table">
+                                <thead class=" text-danger">
+                                <th>
+                                    Customer ID
+                                </th>
+                                <th>
+                                    Full Name
+                                </th>
+                                <th>
+                                    Gender
+                                </th>
+                                <th>
+                                    Date Of Birth
+                                </th>
+                                <th>
+                                    Phone Number
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let customer of customers  | paginate: { itemsPerPage: 5, currentPage: p };">
+                                    <td>
+                                        {{customer.customerId}}
+                                    </td>
+                                    <td>
+                                        {{customer.fullName}}
+                                    </td>
+                                    <td>
+                                        {{customer.gender}}
+                                    </td>
+                                    <td>
+                                        {{customer.dateOfBirth}}
+                                    </td>
+                                    <td>
+                                        {{customer.phoneNumber}}
+                                    </td>
+                                    <td>
+                                        <a role="button" class="btn btn-outline-primary btn-sm" (click)="goToUpdate(customer)">Update</a>
+                                        <button class="btn btn-outline-danger btn-sm" (click)="goToDelete(customer)">Delete</button>
+                                        <button class="btn btn-outline-danger btn-sm " [routerLink]="['/ticket/create', customer.customerId]" >Buy Ticket</button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-danger" (click)="goToCreate()">Create</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
